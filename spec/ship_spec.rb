@@ -1,0 +1,3 @@
+Describe Ship do
+  
+end

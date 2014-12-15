@@ -1,0 +1,3 @@
+Describe Rules do
+
+end
