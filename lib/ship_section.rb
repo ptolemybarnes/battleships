@@ -1,7 +1,9 @@
 class ShipSection
+  attr_reader :location
 
-  def initialize
+  def initialize(location = {})
     @hit = false
+    @location = location
   end
 
   def hit!
