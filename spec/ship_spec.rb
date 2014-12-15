@@ -1,3 +1,3 @@
-Describe Ship do
+describe Ship do
   
 end

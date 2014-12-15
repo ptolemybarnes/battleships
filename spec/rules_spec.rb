@@ -1,3 +1,3 @@
-Describe Board do
+describe Board do
   
 end

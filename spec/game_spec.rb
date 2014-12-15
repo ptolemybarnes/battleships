@@ -1,3 +1,3 @@
-Describe Game do
+describe Game do
   
 end

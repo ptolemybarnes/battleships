@@ -1,3 +1,3 @@
-Describe Player do
+describe Player do
   
 end

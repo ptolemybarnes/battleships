@@ -1,3 +1,3 @@
-Describe Rules do
+describe Rules do
 
 end
