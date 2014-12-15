@@ -25,6 +25,7 @@ possibility: (class Primary Grid << Tracking Grid)
 
 | Responsibility       | Collaborators |
 |----------------------|:-------------:|
+| Set Board            | Players	   |
 | Start game           | Board, Players|
 | Decide turn          | Players       |
 | Finish game          | Players, Board|
