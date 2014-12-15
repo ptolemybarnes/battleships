@@ -14,7 +14,5 @@ class Ship
   def build_ship(length)
     length.times { @ship_body << ShipSection.new }
   end
-
-
-
+  
 end
