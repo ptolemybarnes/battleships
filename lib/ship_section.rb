@@ -15,3 +15,4 @@ class ShipSection
   end
 
 end
+
