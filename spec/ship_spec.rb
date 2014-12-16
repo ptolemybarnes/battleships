@@ -12,34 +12,13 @@ let(:ship) {Ship.new}
         expect(ship.next_section_location([[0,0], [0,2]])).to eq([0,1])
         expect(ship.next_section_location([[5,5], [5,3]])).to eq([5,4])
       end
-      it 'can build the head' do
-        ship.build_head([5,5])
-        built_head_location = ship.ship_body.first.location
-        expect(built_head_location).to eq([5,5])
+      it 'can create a plan of where to build sections' do
+        expect(ship.make_build_plan(head:[10,10], tail:[10,7])).to eq([[10,10],[10,9],[10,8],[10,7]])
       end
-      it 'can build the tail' do
-        ship.build_tail([5,7])
-        built_tail_location = ship.ship_body.last.location
-        expect(built_tail_location).to eq([5,7])
+      it 'can build a ship of 4 sections' do
+        ship.build_sections([[10,10],[10,9],[10,8],[10,7]])
+        expect(ship.measure_length).to eq(4)
       end
-      it 'can build head and tail' do
-        build_options = { head:[10,10], tail:[10,7] }
-        ship.build_ship(build_options)
-        expect(ship.ship_body.first.location).to eq([10,10])
-        expect(ship.ship_body.last.location).to eq([10,7])
-      end
-      it 'can build a single middle section' do
-        build_options = { head:[10,10], tail:[10,8] }
-        ship.build_ship(build_options)
-        ship.build_middle
-        expect(ship.ship_body[-2].location).to eq([10,9])
-      end
-      # it 'can build a ship of 4 sections' do
-      #   build_options = { head:[10,10], tail:[10,7] }
-      #   ship.build_ship(build_options)
-      #   ship.build_middle
-      #   expect(ship.measure_length).to eq(4)
-      # end
     end
   end
 
