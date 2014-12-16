@@ -5,8 +5,7 @@ class Ship
 
   def initialize(build_options = {})
     @build_type =    build_options[:type] || ShipSection
-    build_ship head: build_options[:head],
-               tail: build_options[:tail]
+    build_ship_using build_options
   end
 
   def measure_length
@@ -23,7 +22,7 @@ class Ship
 
   # private
 
-  def build_ship(build_options = {})
+  def build_ship_using build_options
     build_plan =         make_build_plan_from build_options
     build_sections_using build_plan
   end
@@ -40,7 +39,12 @@ class Ship
     @ship_body = build_plan.map {|coordinate| ShipSection.new(coordinate)}
   end
   
-  def next_section_location(coordinates) # takes an array [[x,y],[x,y]]
+  def next_section_location(coordinates) 
+  # takes an array of two arrays [[x,y],[x,y]]:
+  # first array contains coordinates of the ship section that was built last.
+  # second array contains coordinates of tail section
+  # returns [x,y] with either x or y increased/decreased in the direction of tail (no diagonals allowed).
+
 
     current_x = coordinates[0][0]
     current_y = coordinates[0][1]
