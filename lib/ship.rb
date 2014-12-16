@@ -1,6 +1,7 @@
 require './lib/ship_section'
 
 class Ship
+  attr_reader :ship_body
 
   def initialize(length)
     @ship_body = []
@@ -13,6 +14,14 @@ class Ship
 
   def build_ship(length)
     length.times { @ship_body << ShipSection.new }
+  end
+
+  def damage_report
+    @ship_body.select {|section| section.hit? }.count
+  end
+
+  def sunk?
+    damage_report == measure_length
   end
   
 end
