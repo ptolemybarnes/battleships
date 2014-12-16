@@ -4,7 +4,9 @@ class Ship
   attr_reader :ship_body
 
   def initialize(build_options = {})
-    @build_type = build_options[:type] || ShipSection
+    @build_type =    build_options[:type] || ShipSection
+    build_ship head: build_options[:head],
+               tail: build_options[:tail]
   end
 
   def measure_length
@@ -22,11 +24,11 @@ class Ship
   # private
 
   def build_ship(build_options = {})
-    build_plan = make_build_plan(build_options)
-    build_ship(build_plan)
+    build_plan =         make_build_plan_from build_options
+    build_sections_using build_plan
   end
 
-  def make_build_plan(build_options = {})
+  def make_build_plan_from build_options
     build_plan = [build_options[:head]]
     until build_plan.last == build_options[:tail]
       build_plan << next_section_location([build_plan.last,build_options[:tail]])
@@ -34,7 +36,7 @@ class Ship
     build_plan
   end
 
-  def build_sections(build_plan)
+  def build_sections_using build_plan
     @ship_body = build_plan.map {|coordinate| ShipSection.new(coordinate)}
   end
   
