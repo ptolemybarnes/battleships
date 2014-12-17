@@ -1,4 +1,5 @@
 require './lib/game'
+require './lib/board'
 
 describe Game do 
   let(:player1)  {double(:player)}
@@ -12,12 +13,11 @@ describe Game do
     it 'can set to any size' do
       game = Game.new
       game.set_board_size(5)
-      expect(game.board_size).to eq 5
+      expect(game.board.size).to eq 5
     end
 
   end
 
   context 'Players can set their ships' do
-
   end
 end

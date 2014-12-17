@@ -1,5 +1,8 @@
+require 'board'
+
 class Game
 
+  attr_reader :board
   def initialize
     @player = []
   end
@@ -13,7 +16,11 @@ class Game
   end
 
   def set_board_size(size)
-    board = Board.new(size)
+    @board = Board.new(size)
   end
+
+  # def set_all_ships(player)
+  #   ships.each { |ship| }
+  # end
 
 end
