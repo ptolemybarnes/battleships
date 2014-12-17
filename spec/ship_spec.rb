@@ -4,6 +4,7 @@ require './lib/coordinate_methods'
 
 describe Ship do
 
+let(:board) { double(:board, what_is_at?: true)}
 let(:ship) {Ship.new(head:[0,0],tail:[0,2])}
 
   context 'it can build ships' do
@@ -31,6 +32,17 @@ let(:ship) {Ship.new(head:[0,0],tail:[0,2])}
       ship = Ship.new(head:[6.y,7.x],tail:[6.y,9.x])
       expect(ship.measure_length).to eq(3)
     end
+
+    context 'can check that its board plan is valid' do
+
+      it 'knows when a coordinate is valid' do
+        expect(ship.location_is_valid?([5,5], board)).to be(true)
+      end
+      it 'knows when a location already has a ship section' do
+        expect(ship.location_is_valid?([5,5], board)).to_not be_a_kind_of(ShipSection)
+      end
+    end
+
   end
 
   context 'it can be sunk' do

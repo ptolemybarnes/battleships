@@ -21,7 +21,6 @@ class Game
 
   def set_ships_prompt
      'You are ready to place the ships.'
-
   end
 
   def set_battleship(head_yx, tail_yx)

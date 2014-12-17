@@ -21,6 +21,7 @@ class Ship
     damage_report == measure_length
   end
 
+
   # private
 
   def build_ship_using build_options
@@ -38,6 +39,10 @@ class Ship
 
   def build_sections_using build_plan
     @ship_body = build_plan.map {|coordinate| ShipSection.new(coordinate)}
+  end
+  
+  def location_is_valid? location, board
+    board.what_is_at? location
   end
   
 end
