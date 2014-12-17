@@ -19,10 +19,6 @@ class Board
     place_a CellContent.new(location)
   end
 
-  def cell_empty?(y,x)
-    @grid[y][x].nil?
-  end
-
   def create_rows_of size
     size.times { @grid.push [] }
   end
@@ -33,6 +29,14 @@ class Board
 
   def fill_a_row_with_cells row_number
     size.times {|column_number| place_cell_content_at [row_number,column_number]}
+  end
+
+  def generate_tracking_grid
+    @grid.map {|row| generate_tracking_row row }
+  end
+
+  def generate_tracking_row row
+    row.map {|cell| cell.hit? ? true : false }
   end
 
 end

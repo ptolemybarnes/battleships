@@ -35,4 +35,18 @@ let(:cell_content) { double(:cell_content, location: [3,7])}
   context 'knows what is at a grid location' do
 
   end
+
+  context '' do
+    it 'can return a grid showing which cells have been shot at' do
+      board = Board.new(3)
+      board.grid[0][0].hit!
+      expect(board.generate_tracking_grid[0][0]).to be(true)
+      expect(board.generate_tracking_grid[0][1]).to be(false)
+    end
+    it 'can return a tracking row showing which cells in the row have been shot at' do
+      board = Board.new(3)
+      board.grid[0][0].hit!
+      expect(board.generate_tracking_row board.grid[0]).to eq([true,false,false])
+    end
+  end
 end
