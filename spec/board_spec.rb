@@ -1,5 +1,4 @@
 require './lib/board'
-<<<<<<< Updated upstream
 require 'byebug'
 require './lib/cell_content'
 
