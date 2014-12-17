@@ -10,6 +10,10 @@ class Board
     fill_rows_with_cells
   end
 
+  def hit_marker
+    hit_marker ||= []
+  end
+
   def place_a cell_content
     x, y = cell_content.location
     grid[y][x] = cell_content
