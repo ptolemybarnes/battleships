@@ -1,5 +1,4 @@
 require './lib/board'
-<<<<<<< Updated upstream
 require 'byebug'
 require './lib/cell_content'
 
@@ -30,6 +29,15 @@ let(:cell_content) { double(:cell_content, location: [3,7])}
     it 'can place a cell content at a certain location' do
       board.place_cell_content_at [5,5]
       expect(board.grid[5][5]).to be_a_kind_of(CellContent)
+    end
+
+    describe 'can place a ship of any size' do
+      it 'at head and tail locations' do
+        board.place_ship head: [5,5], tail: [5,7]
+        expect(board.grid[5][5]).to be_a_kind_of(ShipSection)
+        expect(board.grid[6][5]).to be_a_kind_of(ShipSection)
+        expect(board.grid[7][5]).to be_a_kind_of(ShipSection)
+      end
     end
   end
 

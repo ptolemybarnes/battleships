@@ -1,4 +1,5 @@
 require './lib/cell_content'
+require './lib/ship'
 
 class Board
   attr_reader :grid, :size 
@@ -10,8 +11,9 @@ class Board
     fill_rows_with_cells
   end
 
-  def hit_marker
-    hit_marker ||= []
+  def place_ship location = {}
+    ship = Ship.new(head: location[:head], tail: location[:tail])
+    ship.ship_body.each {|section| place_a section }
   end
 
   def place_a cell_content
