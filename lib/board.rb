@@ -17,7 +17,7 @@ class Board
   end
 
   def place_a cell_content
-    x, y = cell_content.location
+    y, x = cell_content.location
     grid[y][x] = cell_content
   end
 
