@@ -39,22 +39,18 @@ class Game
     set_battleship(player_input[0], player_input[1])
   end
 
-  def get_player_input
-    'Enter the x coordinate of head'
-    hx = gets.chomp.to_i
-    puts 'Enter the y coordinate of head'
-    hy = gets.chomp.to_i
-    puts 'Enter the x coordinate of tail'
-    tx = gets.chomp.to_i
-    puts 'Enter the y coordinate of tail'
-    ty = gets.chomp.to_i
-    head_location = [hy, hx]
-    tail_location = [ty, tx]
-    ship_location = [head_location, tail_location]
-  end
-
-  # def set_all_ships(player)
-  #   ships.each { |ship| }
+  # def get_player_input
+  #   'Enter the x coordinate of head'
+  #   hx = gets.chomp.to_i
+  #   puts 'Enter the y coordinate of head'
+  #   hy = gets.chomp.to_i
+  #   puts 'Enter the x coordinate of tail'
+  #   tx = gets.chomp.to_i
+  #   puts 'Enter the y coordinate of tail'
+  #   ty = gets.chomp.to_i
+  #   head_location = [hy, hx]
+  #   tail_location = [ty, tx]
+  #   ship_location = [head_location, tail_location]
   # end
 
 end

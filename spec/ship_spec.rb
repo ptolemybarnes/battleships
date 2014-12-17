@@ -7,11 +7,6 @@ describe Ship do
 let(:ship) {Ship.new(head:[0,0],tail:[0,2])}
 
   context 'it can build ships' do
-    it 'can work out where the next section should go' do
-      expect(ship.next_section_location([[5.y,5.x], [7.y,5.x]])).to eq([6.y,5.x])
-      expect(ship.next_section_location([[0.y,0.x], [2.y,0.x]])).to eq([1.y,0.x])
-      expect(ship.next_section_location([[5.y,5.x], [3.y,5.x]])).to eq([4.y,5.x])
-    end
 
     it 'can create a plan of where to build sections' do
       expect(ship.make_build_plan_from(head:[10.y,10.x], tail:[7.y,10.x])).to eq([[10.y,10.x],[9.y,10.x],[8.y,10.x],[7.y,10.x]])

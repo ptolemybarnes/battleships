@@ -28,8 +28,8 @@ describe Game do
       expect(game.board.count_ship).to eq 1
     end
 
-    it 'player should be able to input ship location' do
-      expect(game.get_player_input).to eq([[2,2],[5,2]])
-    end
+    # it 'player should be able to input ship location' do
+    #   expect(game.get_player_input).to eq([[2,2],[5,2]])
+    # end
   end
 end
