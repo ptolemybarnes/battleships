@@ -1,5 +1,6 @@
 require './lib/ship'
 require 'byebug'
+require './lib/coordinate_methods'
 
 describe Ship do
 
@@ -7,32 +8,32 @@ let(:ship) {Ship.new(head:[0,0],tail:[0,2])}
 
   context 'it can build ships' do
     it 'can work out where the next section should go' do
-      expect(ship.next_section_location([[5,5], [5,7]])).to eq([5,6])
-      expect(ship.next_section_location([[0,0], [0,2]])).to eq([0,1])
-      expect(ship.next_section_location([[5,5], [5,3]])).to eq([5,4])
+      expect(ship.next_section_location([[5.y,5.x], [7.y,5.x]])).to eq([6.y,5.x])
+      expect(ship.next_section_location([[0.y,0.x], [2.y,0.x]])).to eq([1.y,0.x])
+      expect(ship.next_section_location([[5.y,5.x], [3.y,5.x]])).to eq([4.y,5.x])
     end
 
     it 'can create a plan of where to build sections' do
-      expect(ship.make_build_plan_from(head:[10,10], tail:[10,7])).to eq([[10,10],[10,9],[10,8],[10,7]])
+      expect(ship.make_build_plan_from(head:[10.y,10.x], tail:[7.y,10.x])).to eq([[10.y,10.x],[9.y,10.x],[8.y,10.x],[7.y,10.x]])
     end
 
     it 'can build a ship of 4 sections' do
-      ship.build_sections_using([[10,10],[10,9],[10,8],[10,7]])
+      ship.build_sections_using([[10.y,10.x],[9.y,10.x],[8.y,10.x],[7.y,10.x]])
       expect(ship.measure_length).to eq(4)
     end
 
     it 'can build a ship of 4 sections with correct locations' do
-      build_options = {head:[10,10], tail:[10,7]}
+      build_options = {head:[10.y,10.x], tail:[10.y,7.x]}
       ship.build_ship_using build_options
       section1, section2, section3, section4 = ship.ship_body.first, ship.ship_body[1],ship.ship_body[2],ship.ship_body[3]
-      expect(section1.location).to eq([10,10])
-      expect(section2.location).to eq([10,9])
-      expect(section3.location).to eq([10,8])
-      expect(section4.location).to eq([10,7])
+      expect(section1.location).to eq([10.y,10.x])
+      expect(section2.location).to eq([10.y,9.x])
+      expect(section3.location).to eq([10.y,8.x])
+      expect(section4.location).to eq([10.y,7.x])
     end
 
     it 'can build a ship of a certain size when created' do
-      ship = Ship.new(head:[6,7],tail:[6,9])
+      ship = Ship.new(head:[6.y,7.x],tail:[6.y,9.x])
       expect(ship.measure_length).to eq(3)
     end
   end
@@ -59,7 +60,7 @@ let(:ship) {Ship.new(head:[0,0],tail:[0,2])}
 end
 
 def summon_decimated_ship
-  ship = Ship.new(head:[0,0],tail:[0,2])
+  ship = Ship.new(head:[0.y,0.x],tail:[0.y,2.x])
   ship.ship_body.each {|section| section.hit! }
   ship
 end

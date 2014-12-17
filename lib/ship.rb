@@ -1,4 +1,5 @@
 require './lib/ship_section'
+require './lib/coordinate_methods'
 
 class Ship
   attr_reader :ship_body
@@ -46,10 +47,10 @@ class Ship
   # returns [x,y] with either x or y increased/decreased in the direction of tail (no diagonals allowed).
 
 
-    current_x = coordinates[0][0]
-    current_y = coordinates[0][1]
-    tail_x    = coordinates[1][0]
-    tail_y    = coordinates[1][1]
+    current_x = coordinates[0][1]
+    current_y = coordinates[0][0]
+    tail_x    = coordinates[1][1]
+    tail_y    = coordinates[1][0]
 
     x_difference = tail_x - current_x
     y_difference = tail_y - current_y
@@ -76,6 +77,6 @@ class Ship
       new_x = current_x
     end
 
-    [new_x,new_y]
+    [new_y,new_x]
   end
 end
