@@ -5,14 +5,9 @@ class Board
     create_grid_of rows
   end
 
-  def place_marker_at grid_ref = {}
-    @grid[grid_ref[:y]][grid_ref[:y]] = 'hit'
-  end
-
-  def place_a ship_section
-    x = ship_section.location.first
-    y = ship_section.location.last
-    grid[y][x] = ship_section
+  def place_a cell_content
+    x, y = cell_content.location
+    grid[y][x] = cell_content
   end
 
   def cell_empty?(y,x)
