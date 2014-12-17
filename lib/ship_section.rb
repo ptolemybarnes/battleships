@@ -1,9 +1,8 @@
-class ShipSection
-  attr_reader :location
+class ShipSection < CellContent
 
   def initialize(location)
     @hit = false
-    @location = location
+    super
   end
 
   def hit!
