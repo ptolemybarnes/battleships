@@ -1,5 +1,6 @@
 require './lib/board'
 require 'byebug'
+require './lib/cell_content'
 
 describe Board do
 
@@ -7,35 +8,31 @@ let(:board)        { Board.new(10) }
 let(:ship_section) { double(:ship_section, location: [3,7])}
 let(:cell_content) { double(:cell_content, location: [3,7])}
 
-  it 'can store a grid' do
-    expect(board.grid).to be_a_kind_of(Array)
+  context 'can build a board of a certain size' do
+    it 'can build a board with 10 rows' do
+      board = Board.new 10
+      expect(board.grid.size).to be(10)
+    end
+    it 'a 10x10 board will contain 100 cell contents' do
+      expect(board.grid.flatten.select {|cell| cell.class == CellContent }.count).to eq(100)
+    end
   end
 
-  it 'can store a grid with 5 rows' do
-    board
-    expect(board.grid.size).to eq(10)
-  end
-
-  context 'can place something inside a cell' do
+  context 'can place something in a location' do
 
     it 'at a certain location given by the cell_content' do
       board.place_a cell_content
       x, y = cell_content.location
       expect(board.grid[y][x]).to be(cell_content)
     end
+
+    it 'can place a cell content at a certain location' do
+      board.place_cell_content_at [5,5]
+      expect(board.grid[5][5]).to be_a_kind_of(CellContent)
+    end
   end
 
   context 'knows what is at a grid location' do
 
-    it 'cell_empty? returns false when the cell is empty' do
-      y, x = 5, 4
-      expect(board.cell_empty?(y,x)).to be(true)
-    end
-
-    it 'cell_empty? returns false when the cell is not empty' do
-      board.place_a ship_section
-      x, y = 3, 7
-      expect(board.cell_empty?(y,x)).to be(false)
-    end
   end
 end

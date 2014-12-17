@@ -1,8 +1,13 @@
-class Board
-  attr_reader :grid
+require './lib/cell_content'
 
-  def initialize(rows)
-    create_grid_of rows
+class Board
+  attr_reader :grid, :size 
+
+  def initialize(size)
+    @size = size
+    @grid = []
+    create_rows_of size
+    fill_rows_with_cells
   end
 
   def place_a cell_content
@@ -10,15 +15,24 @@ class Board
     grid[y][x] = cell_content
   end
 
+  def place_cell_content_at location
+    place_a CellContent.new(location)
+  end
+
   def cell_empty?(y,x)
     @grid[y][x].nil?
   end
 
-  private
+  def create_rows_of size
+    size.times { @grid.push [] }
+  end
 
-  def create_grid_of rows
-    @grid = []
-    rows.times { @grid.push [] }
+  def fill_rows_with_cells
+    @grid.each_with_index {|row, row_number| fill_a_row_with_cells row_number }
+  end
+
+  def fill_a_row_with_cells row_number
+    size.times {|column_number| place_cell_content_at [row_number,column_number]}
   end
 
 end
