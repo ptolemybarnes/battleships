@@ -7,6 +7,7 @@ class Board
   def initialize(size)
     @size = size
     @grid = []
+    @fleet = []
     create_rows_of size
     fill_rows_with_cells
   end
@@ -14,6 +15,11 @@ class Board
   def place_ship location = {}
     ship = Ship.new(head: location[:head], tail: location[:tail])
     ship.ship_body.each {|section| place_a section }
+    @fleet << ship
+  end
+
+  def count_ship
+    @fleet.count
   end
 
   def place_a cell_content
