@@ -2,10 +2,11 @@ require './lib/ship_section'
 require './lib/coordinate_methods'
 
 class Ship
-  attr_reader :ship_body
+  attr_reader :ship_body, :board
 
   def initialize(build_options = {})
     @build_type =    build_options[:type] || ShipSection
+    @board      =    build_options[:board]
     build_ship_using build_options
   end
 
@@ -41,8 +42,8 @@ class Ship
     @ship_body = build_plan.map {|coordinate| ShipSection.new(coordinate)}
   end
   
-  def location_is_valid? location, board
-    board.what_is_at? location
+  def location_is_valid? location
+    raise "Error: #{location} is invalid. Revise your build plan." unless board.validate(location, ShipSection)
   end
   
 end
