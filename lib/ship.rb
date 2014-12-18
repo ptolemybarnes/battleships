@@ -41,9 +41,14 @@ class Ship
   def build_sections_using build_plan
     @ship_body = build_plan.map {|coordinate| ShipSection.new(coordinate)}
   end
+
+  def validate_build_plan build_plan
+    build_plan.all? {|coordinate| location_is_valid? coordinate }
+  end
   
   def location_is_valid? location
     raise "Error: #{location} is invalid. Revise your build plan." unless board.validate(location, ShipSection)
+    true
   end
   
 end
