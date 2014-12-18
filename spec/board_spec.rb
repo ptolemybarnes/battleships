@@ -5,13 +5,14 @@ require './lib/coordinate_methods'
 
 describe Board do
 
-let(:board)        { Board.new(10) }
+let(:game)         { double(:game)}
+let(:board)        { Board.new(10, game) }
 let(:ship_section) { double(:ship_section, location: [3.y,7.x])}
 let(:cell_content) { double(:cell_content, location: [7.y,3.x])}
 
   context 'can build a board of a certain size' do
     it 'can build a board with 10 rows' do
-      board = Board.new 10
+      board = Board.new 10, game
       expect(board.grid.size).to be(10)
     end
     it 'a 10x10 board will contain 100 cell contents' do
@@ -61,13 +62,13 @@ let(:cell_content) { double(:cell_content, location: [7.y,3.x])}
 
   context 'knows where the player has shot at' do
     it 'can return a grid showing which cells have been shot at' do
-      board = Board.new(3)
+      board = Board.new 3, game
       board.grid[0.y][0.x].hit!
       expect(board.generate_tracking_grid[0.y][0.x]).to be(true)
       expect(board.generate_tracking_grid[0.y][1.x]).to be(false)
     end
     it 'can return a tracking row showing which cells in the row have been shot at' do
-      board = Board.new(3)
+      board = Board.new 3, game
       board.grid[0.y][0.x].hit!
       expect(board.generate_tracking_row board.grid[0]).to eq([true,false,false])
     end

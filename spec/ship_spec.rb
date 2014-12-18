@@ -5,7 +5,8 @@ require './lib/coordinate_methods'
 describe Ship do
 
 let(:board) { double(:board)}
-let(:ship) {Ship.new(head:[0,0],tail:[0,2],board: board)}
+let(:game)  { double(:game, validate_build_plan: true)}
+let(:ship) {Ship.new(head:[0,0],tail:[0,2],board: board, game: game)}
 
   context 'it can build ships' do
 

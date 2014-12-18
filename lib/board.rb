@@ -2,18 +2,19 @@ require './lib/cell_content'
 require './lib/ship'
 
 class Board
-  attr_reader :grid, :size 
+  attr_reader :grid, :size, :game
 
-  def initialize(size)
+  def initialize(size, game)
     @size = size
     @grid = []
     @fleet = []
+    @game = game
     create_rows_of size
     fill_rows_with_cells
   end
 
   def place_ship location = {}
-    ship = Ship.new(head: location[:head], tail: location[:tail], board: self)
+    ship = Ship.new(head: location[:head], tail: location[:tail], board: self, game: game)
     ship.ship_body.each {|section| place_a section }
     @fleet << ship
   end
