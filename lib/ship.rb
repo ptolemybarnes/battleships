@@ -2,12 +2,12 @@ require './lib/ship_section'
 require './lib/coordinate_methods'
 
 class Ship
-  attr_reader :ship_body, :board, :game
+  attr_reader :ship_body, :board, :player
 
   def initialize(build_options = {})
     @build_type =    build_options[:type] || ShipSection
     @board      =    build_options[:board]
-    @game       =    build_options[:game]
+    @player       =    build_options[:player]
     build_ship_using build_options
   end
 
@@ -44,7 +44,7 @@ class Ship
   end
 
   def validate_build_plan build_plan
-    game.validate_build_plan build_plan
+    player.validate_build_plan build_plan
     build_plan.all? {|coordinate| location_is_valid? coordinate }
   end
   

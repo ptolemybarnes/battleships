@@ -18,24 +18,4 @@ describe Game do
   let(:rules)    { double(:rules, get_rules: rules_array)}
   let(:game)     { Game.new(rules.get_rules)}
   let(:player)   { Player.new rules_array }
-
-  context 'Players can set their ships' do
-    it 'will prompt player to set ships' do
-      expect(game.set_ships_prompt).to eq 'You are ready to place the ships.'
-    end
-    it 'returns false when player tries to build a ship of an unavailable size' do
-      expect(lambda { game.validate_build_plan(build_plan_of_5) }).to raise_error('Error: Invalid build plan! Your inventory does not allow a ship of that size.')
-    end
-    it 'subtracts one from the inventory.' do
-      game.remove_from_inventory 4
-      expect(game.current_player.inventory[4]).to eq(1)
-    end
-    it 'subtracts one from inventory when build plan is valid' do
-      game = Game.new rules_array
-      game.validate_build_plan build_plan_of_2
-      expect(game.current_player.inventory[2]).to eq(2)
-      game.validate_build_plan build_plan_of_2
-      expect(game.current_player.inventory[2]).to eq(1)
-    end
-  end
 end
