@@ -36,20 +36,20 @@ let(:ship) {Ship.new(head:[0,0],tail:[0,2],board: board)}
     context 'can check that its board plan is valid' do
 
       it 'knows when a coordinate is invalid.' do
-        allow(board).to receive(:validate).with([5,5], ShipSection).and_return(false)
+        allow(board).to receive(:validate).with([5,5]).and_return(false)
         expect(lambda { ship.location_is_valid?([5,5]) }).to raise_error("Error: [5, 5] is invalid. Revise your build plan.")
       end
 
       it 'knows when a coordinate is valid' do
-        allow(board).to receive(:validate).with([5,5], ShipSection).and_return(true)
+        allow(board).to receive(:validate).with([5,5]).and_return(true)
         expect(ship.location_is_valid?([5,5])).to eq(true)
       end
 
       it 'can validate a valid board plan' do
         build_plan = [[5,5],[5,6],[5,7]]
-        allow(board).to receive(:validate).with(build_plan[0], ShipSection).and_return(true)
-        allow(board).to receive(:validate).with(build_plan[1], ShipSection).and_return(true)
-        allow(board).to receive(:validate).with(build_plan[2], ShipSection).and_return(true)
+        allow(board).to receive(:validate).with(build_plan[0]).and_return(true)
+        allow(board).to receive(:validate).with(build_plan[1]).and_return(true)
+        allow(board).to receive(:validate).with(build_plan[2]).and_return(true)
         
         expect(ship.validate_build_plan(build_plan)).to eq(true)
       end
@@ -75,7 +75,6 @@ let(:ship) {Ship.new(head:[0,0],tail:[0,2],board: board)}
       expect(alive_ship.sunk?).to be(false)
     end
   end
-
 end
 
 def summon_decimated_ship

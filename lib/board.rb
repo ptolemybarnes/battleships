@@ -13,7 +13,7 @@ class Board
   end
 
   def place_ship location = {}
-    ship = Ship.new(head: location[:head], tail: location[:tail])
+    ship = Ship.new(head: location[:head], tail: location[:tail], board: self)
     ship.ship_body.each {|section| place_a section }
     @fleet << ship
   end
@@ -51,4 +51,12 @@ class Board
     row.map {|cell| cell.hit? ? true : false }
   end
 
+  def validate location
+    y, x = location
+    if grid[y] && grid[y][x]
+      grid[y][x].class == CellContent
+    else
+      false
+    end
+  end
 end

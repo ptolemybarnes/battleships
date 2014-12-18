@@ -43,11 +43,23 @@ let(:cell_content) { double(:cell_content, location: [7.y,3.x])}
     end
   end
 
-  context 'knows what is at a grid location' do
-
+  context 'can check that a location in the grid is a valid place to put an object of a given class' do
+    it 'returns false when location is off the grid' do
+      expect(board.validate([12,12])).to eq(false)
+    end
+    it 'returns true when location is on the grid' do
+      expect(board.validate([8,9])).to eq(true)
+    end
+    it 'returns false when grid location is not a valid place to put the object we want to place' do
+      board.place_a ShipSection.new([7,6])
+      expect(board.validate([7,6])).to eq(false)
+    end
+    it 'returns true when grid location is a valid place to put the object we want to place' do
+      expect(board.validate([7,6])).to eq(true)
+    end
   end
 
-  context '' do
+  context 'knows where the player has shot at' do
     it 'can return a grid showing which cells have been shot at' do
       board = Board.new(3)
       board.grid[0.y][0.x].hit!

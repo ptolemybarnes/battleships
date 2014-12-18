@@ -47,7 +47,7 @@ class Ship
   end
   
   def location_is_valid? location
-    raise "Error: #{location} is invalid. Revise your build plan." unless board.validate(location, ShipSection)
+    raise "Error: #{location} is invalid. Revise your build plan." unless @board.validate(location)
     true
   end
   
